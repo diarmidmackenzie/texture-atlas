@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FNF Test</title>
+    <meta name="description" content="FNF Test">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/diarmidmackenzie/instanced-mesh@v0.2-alpha/src/instanced-mesh.min.js"></script>
+    <script src="./texture-atlas.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <img id="boyfriend" src="assets/BOYFRIEND.png">
+      </a-assets>
+
+      <a-image src="#boyfriend" position="0 1.5 -1.5" width="1"
+               texture-atlas="xml:assets/BOYFRIEND.xml;subTexture:boyfriend dodge0014">
+      </a-image>
+      <!-- x="6640" y="509" width="374" height="357" frameX="-1" frameY="-5" frameWidth="375" frameHeight="362" -->
+    </a-scene>
+  </body>
+</html>
