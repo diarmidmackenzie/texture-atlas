@@ -4,11 +4,7 @@ An A-Frame component to use an XML texture atlas (e.g. as output by adobe Animat
 
 This is a basic initial implementation, which supports the x, y, width and height parameters in an XML texture atlas.  It does not yet support other parameters such as frameX, frameY, frameWidth & frameHeight (which appear in the example XML texture atlas but are ignored).
 
-
-
 ### Installation
-
-
 
 Download texture-atlas.js from this repo, and include like this:
 
@@ -23,8 +19,6 @@ Or via JSDelivr CDN (check the releases in the repo for the best version number 
 ```
 <script src="https://cdn.jsdelivr.net/gh/diarmidmackenzie/texture-atlas@latest/texture-atlas.min.js"></script>
 ```
-
-
 
 ### Usage
 
@@ -72,4 +66,12 @@ https://github.com/ninjamuffin99/Funkin
 They are licensed under Apache License 2.0, and redistributed here in accordance with clause 4 of that license.
 
 https://github.com/ninjamuffin99/Funkin/blob/master/LICENSE
+
+
+
+### Acknowledgements
+
+The atlas-uvs A-Frame component provided an invaluable reference to get things working correctly with THREE.js.
+
+https://github.com/supermedium/superframe/tree/master/components/atlas-uvs/
 
