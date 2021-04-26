@@ -8,15 +8,60 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/diarmidmackenzie/instanced-mesh@v0.2-alpha/src/instanced-mesh.min.js"></script>
     <script src="./texture-atlas.js"></script>
+    <script>
+      AFRAME.registerComponent('animate-sprite', {
+      // example:
+      // x="6640" y="509" width="374" height="357" frameX="-1" frameY="-5" frameWidth="375" frameHeight="362" -->
+        schema: {
+          src: {type: 'selector'},
+          xml: {type: 'selector'},
+          texturePrefix: {type: 'string'},
+          frames: {type: 'number'},
+          frameMsecs: {type: 'number', default: 40}  // 40msecs/frame = 25fps.
+        },
+
+        init: function() {
+
+          this.timeDelta = 0;
+          this.frameCounter = 0;
+          textureString = this.data.texturePrefix + "00";
+          this.el.setAttribute("texture-atlas",
+                               {"subTexture" : textureString,
+                                "src" : this.data.src,
+                                "xml" : this.data.xml});
+        },
+
+        tick: function (time, timeDelta) {
+
+          this.timeDelta += timeDelta;
+          if (this.timeDelta > this.data.frameMsecs) {
+            // advance a frame.
+            this.frameCounter++;
+            if (this.frameCounter >= this.data.frames) {
+              this.frameCounter = 0;
+            }
+            textureString = this.data.texturePrefix + this.frameCounter.toString().padStart(2,"0");
+
+            this.el.setAttribute("texture-atlas",
+                                 {"subTexture" : textureString});
+
+            // reset frame advance timer.
+            this.timeDelta = 0;
+          }
+
+        }
+      });
+    </script>
   </head>
   <body>
     <a-scene>
       <a-assets>
-        <img id="boyfriend" src="assets/BOYFRIEND.png">
+        <img id="bf" src="assets/BOYFRIEND.png">
+        <a-asset-item id="bfxml" src="assets/BOYFRIEND.xml"></a-asset-item>
       </a-assets>
 
-      <a-image src="#boyfriend" position="0 1.5 -1.5" width="1"
-               texture-atlas="totalRows: 7; totalColumns: 18; column: 1; row: 4">
+      <a-image position="0 1.5 -1.5" width="1"
+               animate-sprite="xml:#bfxml;src:#bf;texturePrefix:BF Dead Loop00;frames:33">
       </a-image>
     </a-scene>
   </body>
